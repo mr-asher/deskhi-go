@@ -18,10 +18,6 @@ func main() {
 	// Initialize middleware
 	authMiddleware := getAuthMiddleware()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-
 	app.Get("/api/desk/distance", func(c *fiber.Ctx) error {
 		var distances []DeskDistance
 		db.Find(&distances)
