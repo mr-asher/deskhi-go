@@ -22,6 +22,12 @@ func main() {
 		return c.SendString("Hello, World!")
 	})
 
+	app.Get("/api/desk/distance", func(c *fiber.Ctx) error {
+		var distances []DeskDistance
+		db.Find(&distances)
+		return c.Status(200).JSON(distances)
+	})
+
 	app.Post("/api/desk/distance", authMiddleware, func(c *fiber.Ctx) error {
 		c.Accepts("application/json")
 

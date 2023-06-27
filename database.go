@@ -9,7 +9,7 @@ import (
 // DeskDistance handles the post data structure and the database model.
 type DeskDistance struct {
 	gorm.Model
-	Distance uint `json:"distance" xml:"distance" form:"distance"`
+	Distance uint `json:"distance"`
 }
 
 func getDb() *gorm.DB {
