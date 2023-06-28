@@ -22,3 +22,9 @@ go.work
 
 # Enviroment variables file
 .env
+
+# No databases
+*.db
+
+# no executables
+deskhi-fiber
