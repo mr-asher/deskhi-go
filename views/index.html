@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon-32x32.png">
+  <meta name="description" content="Reporting the height of Asher's sit/stand desk. So you know. You need to know. Does he even ever stand? But really?">
+  <meta name="twitter:image" content="/desk.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@FirstAsher">
+  <meta property="og:title" content="Asher Leslie">
+  <meta property="og:description" content="Reporting the height of Asher's sit/stand desk. So you know. You need to know. Does he even ever stand? But really?">
+  <meta property="og:image" content="/desk.png">
+  <title>Asher's Desk Height</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Desk Height</h1>
+      <h1 class="mt-6 text-4xl text-gray-600">{{.LatestDistance.Distance}}</h1>
+      <h1 class="mt-24 text-2xl text-gray-600">{{if gt .LatestDistance.Distance 80 }} Asher's probably standing {{ else }} Asher's most likely sitting {{ end }}</h1>
+    </div>
+  </div>
+</body>
+
+<script>
+  const distanceData = {{.Distances}};
+</script>
+
+</html>

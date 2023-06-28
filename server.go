@@ -3,20 +3,34 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/limiter"
+	"github.com/gofiber/template/html/v2"
 )
 
 func main() {
 
 	db := getDb()
 
-	// Create the web server
-	app := fiber.New()
+	engine := html.New("./views", ".html")
 
-	app.Use(limiter.New())
+	// Create the web server
+	app := fiber.New(fiber.Config{Views: engine})
+
+	app.Static("/", "./public")
+
+	// app.Use(limiter.New())
 
 	// Initialize middleware
 	authMiddleware := getAuthMiddleware()
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		var distances []DeskDistance
+		var latestDistance DeskDistance
+
+		db.Find(&distances)
+		db.Order("created_at desc").First(&latestDistance)
+
+		return c.Render("index", fiber.Map{"Distances": distances, "LatestDistance": latestDistance})
+	})
 
 	app.Get("/api/desk/distance", func(c *fiber.Ctx) error {
 		var distances []DeskDistance
